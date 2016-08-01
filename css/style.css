@@ -1,221 +1,383 @@
+/*
+ * Page wide element settings.
+ */
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
 body,
 div,
-ul,
-li,
-p,
+html
+{
+  width: 100%;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: normal normal 400 normal 16px/1.4 "Open Sans", sans-serif;
+  color: #2d3c49;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  padding:0;
-  margin:0;
-  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  color: #2d3c49;
+  font-weight: 600;
+  padding: 0;
+  margin: 0;
+}
+
+h2 {
+  font-size: 24px;
+  color: #999;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 20px;
+  font-style: italic;
+  color: #666;
+  padding: 10px 0;
+}
+
+h4 {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+a,
+a:link,
+a:visited {
+  color: #1199c3;
+  text-decoration: none;
+}
+
+a:link:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+}
+
+ul {
+  list-style-type: none;
+  margin: 1em 0;
+  padding: 0;
+}
+
+.row {
+  padding: 40px 5%;
 }
 
 .clear-fix {
   overflow: auto;
 }
 
-.education-entry,
-.work-entry,
-.project-entry {
-  padding: 0 5%;
-}
-
-h1 {
-  font-size: 40px;
-  color: #f5a623;
-  line-height: 48px;
-  display: inline;
-}
-
-h2 {
-  font-weight: bold;
-  font-size: 24px;
-  color: #999;
-  line-height: 29px;
-  padding: 10px;
-}
-
-h3 {
-  font-style: italic;
-  font-size: 20px;
-  color: #000;
-  line-height: 22px;
-}
-
-h4 {
-  font-weight: bold;
-  font-size: 14px;
-  color: #4a4a4a;
-  line-height: 17px;
-}
-
-h2,
-h3,
-h4,
-h5 {
-  padding:10px 5%;
-
-}
-
-
-.date-text {
-  font-style: italic;
-  font-size: 14px;
-  color: #999;
-  line-height: 16px;
-  float: left;
-}
-
-.location-text {
-  font-style: italic;
-  font-size: 14px;
-  color: #999;
-  line-height: 16px;
-  float: right;
-
-}
-
-p {
-  font-size: 14px;
-  color: #333;
-  line-height: 21px;
-}
-
-a {
-  color: #1199c3;
-  text-decoration: none;
-  margin-top: 10px;
-  display: block;
-}
-
-.welcome-message {
-  font-style: italic;
-  font-size: 18px;
-  color: #f3f3f3;
-  line-height: 28px;
-}
-
-#skills-h3 {
-  color: #f5ae23;
-  display: none;
-}
-
-.orange {
-  background-color: #f5ae23;
-}
-
-.orange-text {
-  color: #f5ae23;
-}
-
-.white-text {
-  font-weight: bold;
-  color: #fff;
-}
-
 .gray {
   background-color: #f3f3f3;
-  padding-bottom: 10px;
-  clear:both;
 }
 
 .dark-gray {
   background-color: #4a4a4a;
 }
 
-/* TODO: Replace with image later */
+.date-text {
+  width: auto;
+  float: left;
+  font-style: italic;
+  color: #999;
+}
+
+.location-text {
+  width: auto;
+  float: right;
+  font-style: italic;
+  color: #999;
+}
+
+/**
+ * Header.
+ */
+
 #header {
-  background-color: #484848;
+  position: relative;
+  overflow: hidden;
+  min-height: 350px;
 }
 
-.flex-box {
-  display: -webkit-flex;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 10px;
-}
-
-.flex-column {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  padding: 10px;
+#header:before {
+  background-image: url(../images/web-developer-960x300.jpg);
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 1.0;
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
 }
 
 .center-content {
   padding: 2.5% 5%;
 }
 
-ul {
-  list-style-type: none;
+#name {
+  font-size: 34px;
+  color: #fff;
+  display: inline;
+  border-bottom: 2px solid #fff;
+}
+
+.job-title {
+  font-size: 20px;
+  color: #fff;
 }
 
 .biopic {
-  float: left;
-  padding: 10px;
+  padding: 0;
   width: 200px;
-  display: none;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  margin: -100px 0 0 5%;
 }
 
-img {
-  padding: 10px;
+.welcome-container {
+  margin-top: -100px;
+  padding-top: 120px;
 }
 
-span {
-  padding: 5px;
+.welcome-message {
+  font-style: italic;
+  font-size: 18px;
+  color: #333;
 }
 
-#lets-connect {
+/**
+ * Contacts.
+ */
+
+.contacts {
+  width:100%;
+  float: right;
+  padding: 0 5%;
+  line-height: 1.8;
   text-align: center;
+  margin-bottom: 30px;
 }
 
-/* Media queries to handle various device widths */
-
-@media only screen and (max-width: 1024px) {
-  #lets-connect {
-    margin-top: 5%;
-  }
+.contacts ul {
+  width:100%;
 }
 
-@media only screen and (max-width:900px) {
-  .biopic {
-    width: 175px;
-  }
+.contacts li {
+  display: inline-block;
+  margin-right: 1em;
 }
 
-@media only screen and (max-width: 750px) {
-  #lets-connect {
-    margin-top: 10%;
-  }
-  .biopic {
-    width: 150px;
-  }
-  .welcome-message {
-    display: none;
-  }
+.contacts li:last-child {
+  margin-right: 0;
+}
+
+.flex-box {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.contact-type {
+  color: coral;
+  padding-right: 4px;
+}
+
+.contact-type:after {
+  content: ":";
+}
+
+/**
+ * Technical Skills.
+ */
+
+#skills li.flex-item {
+  margin: 1em;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.skill-text {
+  border-radius: 0 5px 5px 0;
+  padding: 0.5em 1em;
+  border: 1px solid #ccc;
+  color:#666;
+}
+
+/**
+ * Work Experience.
+ */
+
+.work-entry {
+  margin: 10px 0;
+  padding: 20px 0;
+  border-bottom: 1px dashed #ccc;
+}
+
+.work-entry:first-of-type {
+  padding-top: 10px;
+}
+
+.work-entry:last-of-type {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+/**
+ * Projects.
+ */
+
+.project-entry {
+  margin: 10px 0;
+  padding: 20px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.project-entry:first-of-type {
+  padding-top: 10px;
+}
+
+.project-entry:last-of-type {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.flex-images {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.flex-images img {
+  max-width: 100%;
+  margin: 0 0 1em 0;
+  padding: 0;
+}
+
+/**
+ * Educaton.
+ */
+
+.education-entry {
+  margin-bottom: 20px;
+}
+
+.online-heading {
+  margin: 20px 0;
+  padding: 0;
+}
+
+a:link.online-school-link,
+a:visited.online-school-link {
+  color: #333;
+  margin: 0;
+  font-style: italic;
+}
+
+.date-text-online {
+  font-style: italic;
+  color: #999;
+  float: none;
+}
+
+/**
+ * Map.
+ */
+
+#mapDiv {
+  min-height: 540px;
 }
 
 #map {
-  display: block;
-  height: 100%;
-  margin: 0 5%;
-}
-
-#mapDiv {
   height: 400px;
   width: 100%;
-  padding-bottom: 5%;
+  margin: 0 auto;
+  padding: 0;
 }
 
-@media only screen and (min-width: 750px) {
-  #skills-h3,
-  .biopic {
-    display: block;
+.marker-content {
+  max-width: 200px;
+}
+
+/**
+ * Footer.
+ */
+
+#lets-connect {
+  clear: both;
+  text-align: center;
+}
+
+#lets-connect h2 {
+  padding: 10px;
+}
+
+#footerContacts {
+  padding: 0 5%;
+  margin: 0;
+  line-height: 1.8;
+}
+
+#footerContacts li {
+  display: inline-block;
+  margin-right: 1em;
+}
+
+#footerContacts li:last-child {
+  margin-right: 0;
+}
+
+/*
+ * Header h1 name is smaller to start.
+ * Here I increase the font-size just a bit.
+ */
+
+@media screen and (min-width: 370px) {
+  #name {
+    font-size: 38px;
+  }
+}
+
+/*
+ * Contacts are centered on the page to start.
+ * Here I float them left under the header image.
+ */
+
+@media screen and (min-width: 750px) {
+  .contacts {
+    width:65%;
+    float: right;
+    text-align: right;
+    padding: 0 5% 0 0;
+    margin-bottom: 20px;
   }
 }

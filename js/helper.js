@@ -24,10 +24,10 @@ var HTMLblog = '<li class="flex-item"><span class="orange-text">blog</span><span
 var HTMLlocation = '<li class="flex-item"><span class="orange-text">location</span><span class="white-text">%data%</span></li>';
 
 var HTMLbioPic = '<img src="%data%" class="biopic">';
-var HTMLwelcomeMsg = '<span class="welcome-message">%data%</span>';
+var HTMLwelcomeMsg = '<p class="welcome-message">%data%</p>';
 
-var HTMLskillsStart = '<h3 id="skills-h3">Skills at a Glance:</h3><ul id="skills" class="flex-column"></ul>';
-var HTMLskills = '<li class="flex-item"><span class="white-text">%data%</span></li>';
+var HTMLskillsStart = '<div id="technicalSkills"><h2>Technical Skills</h2><ul id="skills" class="flex-column"></ul></div>';
+var HTMLskills = '<li class="flex-item"><span class="skill-text">%data%</span></li>';
 
 var HTMLworkStart = '<div class="work-entry"></div>';
 var HTMLworkEmployer = '<a href="#">%data%';
@@ -60,7 +60,18 @@ var googleMap = '<div id="map"></div>';
 
 
 /*
-The Internationalize Names challenge found in the lesson Flow Control from JavaScript Basics requires you to create a function that will need this helper code to run. Don't delete! It hooks up your code to the button you'll be appending.
+The Internationalize Names challenge found in the lesson Flow Control from JavaScript
+Basics requires you to create a function that will need this helper code to run.
+Don't delete! It hooks up your code to the button you'll be appending.
+
+function inName(name) {
+    var name = name.trim().split(" ");
+    console.log(name);
+    name[1] = name[1].toUpperCase();
+    name[0] = name[0].slice(0,1).toUpperCase() + name[0].slice(1).toLowerCase();
+
+    return name[0] + " " + name[1];
+}
 */
 $(document).ready(function() {
   $('button').click(function() {
@@ -71,7 +82,8 @@ $(document).ready(function() {
 });
 
 /*
-The next few lines about clicks are for the Collecting Click Locations quiz in the lesson Flow Control from JavaScript Basics.
+The next few lines about clicks are for the Collecting Click Locations quiz in
+the lesson Flow Control from JavaScript Basics.
 */
 var clickLocations = [];
 
@@ -85,9 +97,11 @@ function logClicks(x,y) {
   console.log('x location: ' + x + '; y location: ' + y);
 }
 
-$(document).click(function(loc) {
-  // your code goes here!
-});
+//$(document).click(function(loc) {
+//  var x = loc.pageX;
+//  var y = loc.pageY;
+//  logClicks(x, y);
+//});
 
 
 
@@ -168,16 +182,21 @@ function initializeMap() {
       title: name
     });
 
-    // infoWindows are the little helper windows that open when you click
-    // or hover over a pin on a map. They usually contain more information
-    // about a location.
+    // Create marker info window.
+    // https://developers.google.com/maps/documentation/javascript/places
+    // https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple
+    var contentString = '' +
+      '<div class="marker-content">' +
+        '<h5 class="marker-heading">' + name + '</h5>' +
+      '</div>';
+
     var infoWindow = new google.maps.InfoWindow({
-      content: name
+      content: contentString,
+      maxWidth: 200
     });
 
-    // hmmmm, I wonder what this is about...
-    google.maps.event.addListener(marker, 'click', function() {
-      // your code goes here!
+    marker.addListener('click', function() {
+      infoWindow.open(map, marker);
     });
 
     // this is where the pin actually gets added to the map.
@@ -239,11 +258,11 @@ Uncomment the code below when you're ready to implement a Google Map!
 */
 
 // Calls the initializeMap() function when the page loads
-//window.addEventListener('load', initializeMap);
+window.addEventListener('load', initializeMap);
 
 // Vanilla JS way to listen for resizing of the window
 // and adjust map bounds
-//window.addEventListener('resize', function(e) {
+window.addEventListener('resize', function(e) {
   //Make sure the map bounds get updated on page resize
-//  map.fitBounds(mapBounds);
-//});
+  map.fitBounds(mapBounds);
+});
