@@ -10,8 +10,7 @@
 
 body,
 div,
-html
-{
+html {
   width: 100%;
   display: block;
   margin: 0;
@@ -109,13 +108,13 @@ ul {
  * Header.
  */
 
-#header {
+.masthead {
   position: relative;
   overflow: hidden;
   min-height: 350px;
 }
 
-#header:before {
+.masthead:before {
   background-image: url(../images/web-developer-960x300.jpg);
   content: ' ';
   display: block;
@@ -135,7 +134,7 @@ ul {
   padding: 2.5% 5%;
 }
 
-#name {
+.my-name {
   font-size: 34px;
   color: #fff;
   display: inline;
@@ -170,7 +169,7 @@ ul {
  * Contacts.
  */
 
-.contacts {
+.contacts-container {
   width:100%;
   float: right;
   padding: 0 5%;
@@ -179,16 +178,16 @@ ul {
   margin-bottom: 30px;
 }
 
-.contacts ul {
+.top-contacts {
   width:100%;
 }
 
-.contacts li {
+.top-contacts .flex-item {
   display: inline-block;
   margin-right: 1em;
 }
 
-.contacts li:last-child {
+.top-contacts .flex-item:last-child {
   margin-right: 0;
 }
 
@@ -213,7 +212,7 @@ ul {
  * Technical Skills.
  */
 
-#skills li.flex-item {
+.flex-column .flex-item {
   margin: 1em;
 }
 
@@ -277,7 +276,7 @@ ul {
   justify-content: space-between;
 }
 
-.flex-images img {
+.flex-image {
   max-width: 100%;
   margin: 0 0 1em 0;
   padding: 0;
@@ -313,11 +312,11 @@ a:visited.online-school-link {
  * Map.
  */
 
-#mapDiv {
+.map-container {
   min-height: 540px;
 }
 
-#map {
+.map-canvas {
   height: 400px;
   width: 100%;
   margin: 0 auto;
@@ -332,27 +331,27 @@ a:visited.online-school-link {
  * Footer.
  */
 
-#lets-connect {
+.lets-connect-container {
   clear: both;
   text-align: center;
 }
 
-#lets-connect h2 {
+.lets-connect-heading {
   padding: 10px;
 }
 
-#footerContacts {
+.footer-contacts {
   padding: 0 5%;
   margin: 0;
   line-height: 1.8;
 }
 
-#footerContacts li {
+.footer-contacts .flex-item {
   display: inline-block;
   margin-right: 1em;
 }
 
-#footerContacts li:last-child {
+.footer-contacts .flex-item:last-child {
   margin-right: 0;
 }
 
@@ -362,7 +361,7 @@ a:visited.online-school-link {
  */
 
 @media screen and (min-width: 370px) {
-  #name {
+  .my-name {
     font-size: 38px;
   }
 }
@@ -373,7 +372,7 @@ a:visited.online-school-link {
  */
 
 @media screen and (min-width: 750px) {
-  .contacts {
+  .contacts-container {
     width:65%;
     float: right;
     text-align: right;

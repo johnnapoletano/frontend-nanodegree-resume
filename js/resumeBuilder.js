@@ -23,8 +23,8 @@ var bio = {
     "Developer position at a retail, financial services, real-estate, travel, web " +
     "design, or hosting company. Prior work experience in Accounting, " +
     "Budgeting, and Financial Analysis shows that I can cooperate and collaborate " +
-    "easily with all staff levels regardless of age. I am vigilant about details, " +
-    "yet won't lose site of the big picture. I am willing to relocate within the " +
+    "easily with all staff levels. I pay close attention to details, " +
+    "yet never lose site of the big picture. I am willing to relocate within the " +
     "United States.",
   "skills": ["Linux", "MySQL", "PHP", "HTML", "CSS", "JavaScript", "AJAX", "jQuery",
     "Bootstrap", "Photoshop", "CPanel/WHM", "Accounting", "Budgeting", "Financial Analysis"],
@@ -41,13 +41,16 @@ var bio = {
     // Header - DOM changes and print data.
     $("#header").prepend(formattedRole);
     $("#header hr").remove();
+    $("#header").addClass("masthead");
     $("#header span:first").addClass("job-title");
     $("#header").prepend(formattedName);
     $("#name").after('<br>');
+    $("#name").addClass("my-name");
 
     // BioPic - format data, print data, DOM changes.
     var formattedBioPic = HTMLbioPic.replace("%data%", bio.biopic);
     $("#header").after(formattedBioPic);
+    $(".biopic").attr("alt", bio.name + " - " + bio.role);
 
     // Summary (Welcome Message) - format data, DOM changes, print data.
     var formattedWelcomeMessage = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
@@ -64,8 +67,7 @@ var bio = {
 
     // Contacts - header DOM changes, print data.
     $("#topContacts").remove();
-    $(".welcome-message").after('<ul id="topContacts" class="flex-box"></ul>');
-    $(".biopic").after('<div class="contacts"><ul id="topContacts" class="flex-box"></ul></div>');
+    $(".biopic").after('<div class="contacts-container"><ul id="topContacts" class="flex-box top-contacts"></ul></div>');
     $("#topContacts").append(formattedMobile);
     $("#topContacts").append(formattedEmail);
     $("#topContacts").append(formattedGithub);
@@ -82,6 +84,7 @@ var bio = {
     $("#footerContacts").append(formattedGithub);
     $("#footerContacts").append(formattedTwitter); // optional
     $("#footerContacts").append(formattedLocation);
+    $("#footerContacts").addClass("footer-contacts");
     $("#footerContacts .orange-text").addClass("contact-type");
     $("#footerContacts .orange-text").removeClass("orange-text");
     $("#footerContacts .white-text").addClass("contact-value");
@@ -91,6 +94,8 @@ var bio = {
     $("#lets-connect .orange").removeClass("orange");
     $("#lets-connect").addClass("gray");
     $("#lets-connect").removeClass("dark-gray");
+    $("#lets-connect").addClass("lets-connect-container");
+    $("#lets-connect h2").addClass("lets-connect-heading");
 
     // Contacts - url wrap of multiple elements.
     var linkedEmail = "mailto:" + bio.contacts.email + "?Subject=Nice%20Resume";
@@ -253,6 +258,9 @@ var education = {
         formattedSchoolMajor = formattedSchoolMajor.replace("Major", "Majors");
       }
 
+      // Replace # with school url.
+      formattedSchoolName = formattedSchoolName.replace("#", education.schools[i].url);
+
       // Print school data.
       $("#education").append(HTMLschoolStart);
       $(".education-entry:last").append(formattedSchoolName);
@@ -312,6 +320,9 @@ education.display();
  * contains an employer, title, location, dates worked, and description strings.
  *
  * Call the display function within this object to show it's content.
+ *
+ * NOTICE: url property is not in the spec, however, it's necessary to replace
+ * the '#' in the var HTMLworkEmployer <a href="#">%data%</a> code line.
  */
 
 var work = {
@@ -327,7 +338,8 @@ var work = {
         "and back-end coding, editing stock photos, administering a web server, " +
         "review of monetization strategies, and SEO analysis. Web developement " +
         "work is primarily done in HTML, CSS, Javascript, PHP, and MySQL on a " +
-        "dedicated Linux server."
+        "dedicated Linux server.",
+      "url": "http://www.websitebuilders.com"
     },
     {
       "employer": "Au Bon Pain",
@@ -343,7 +355,8 @@ var work = {
         "District Manager review process. Re-engineered cash forecasting and " +
         "controls. Coordinated and produced annual budget. Responsible for " +
         "monthly review and interpretation of financial results. Analyzed " +
-        "leases, profitability and ROI of restaurant portfolio."
+        "leases, profitability and ROI of restaurant portfolio.",
+      "url": "http://www.aubonpain.com"
     },
     {
       "employer": "Hoyts Cinemas",
@@ -354,22 +367,24 @@ var work = {
         "revenue, 275 cinema location retailer. One of four team members " +
         "participating in the monthly close and reporting functions, P&L, " +
         "Balance Sheet, and Cash Flow analysis, lease payments, budgeting, " +
-        "benchmarking, field and overhead analytical support."
+        "benchmarking, field and overhead analytical support.",
+      "url": "http://www.hoyts.com.au"
     },
     {
-    "employer": "Adecco Staffing",
+    "employer": "TAD Resources International",
     "title": "Financial Analyst",
     "location": "Boston, MA",
     "dates": "1995 - 1997",
     "description": "Adecco purchased TAD Resources International, Cambridge, " +
-      "MA a $1.2 billion annual revenue, 400 offices staffing company. One " +
-      "of four team members participating in the financial planning, reporting, " +
+      "MA a $1.2 billion annual revenue, 400 offices staffing company. One of four " +
+      "corporate team members participating in the financial planning, reporting, " +
       "and analysis functions. Researched industry competitors for benchmarking, " +
       "provided analytical support to field, bid proposal and contract " +
       "profitability analysis. Projected and initiated borrowing and investing " +
       "activities in millions of dollars. Developed an optimizing spreadsheet " +
       "for borrowing activities. Monitored and reconciled the corporate bank " +
-      "account, supported monthly and annual cash forecasts."
+      "account, supported monthly and annual cash forecasts.",
+      "url": "http://www.adecco.com"
     }
   ],
   display: function() {
@@ -390,6 +405,9 @@ var work = {
       var formattedWorkDates = HTMLworkDates.replace("%data%", work.jobs[i].dates);
       var formattedWorkLocation = HTMLworkLocation.replace("%data%", work.jobs[i].location);
       var formattedWorkDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
+
+      // Replace # with jobs url.
+      formattedWorkEmployer = formattedWorkEmployer.replace("#", work.jobs[i].url);
 
       // Print jobs data.
       $("#workExperience").append(HTMLworkStart);
@@ -415,7 +433,7 @@ work.display();
  * projects array contains a title, dates, and description string. An images
  * array contains url strings to show one or more project images.
  *
- * Dot notation used to define the display function for this object.
+ * NOTICE: Dot notation used to define the display function for this object.
  *
  * NOTICE: url property is not in the spec, however, it's necessary to replace
  * the '#' in the var HTMLprojectTitle <a href="#">%data%</a> code line.
@@ -434,7 +452,7 @@ var projects = {
         "images/project-one-300x168.jpg",
         "images/project-one-300x168.jpg"
       ],
-      "url": "http://example.com"
+      "url": "https://github.com/johnnapoletano"
     },
     {
       "title": "Website Optimization",
@@ -447,7 +465,7 @@ var projects = {
         "images/project-two-300x168.jpg",
         "images/project-two-300x168.jpg"
       ],
-      "url": "http://example.com"
+      "url": "https://github.com/johnnapoletano"
     },
     {
       "title": "Neighborhood Map",
@@ -463,7 +481,7 @@ var projects = {
         "images/project-three-300x168.jpg",
         "images/project-three-300x168.jpg"
       ],
-      "url": "http://example.com"
+      "url": "https://github.com/johnnapoletano"
     },
     {
       "title": "Feed Reader Testing",
@@ -477,7 +495,7 @@ var projects = {
         "images/project-four-300x168.jpg",
         "images/project-four-300x168.jpg"
       ],
-      "url": "http://example.com"
+      "url": "https://github.com/johnnapoletano"
     }
   ]
 };
@@ -523,6 +541,10 @@ projects.display = function() {
       for (j = 0; j < projects.projects[i].images.length; j++) {
         var formattedProjectImage = HTMLprojectImage.replace("%data%", projects.projects[i].images[0]);
         $(".project-entry:last").append(formattedProjectImage);
+        $(".project-entry:last img:last").addClass("flex-image");
+
+        // Add alt attribute or HTML won't validate.
+        $(".project-entry:last img:last").attr("alt", "Project " + [i + 1] + " Snapshot " + [j + 1]);
       }
       // Add flex class to the images.
       $(".project-entry:last img").wrapAll('<div class="flex-images"></div>');
@@ -534,9 +556,12 @@ projects.display = function() {
 projects.display();
 
 /**
- * Interactive map with info windows (see helper.js line 188+).
+ * Interactive map with info windows.
+ * I also made changes to helper.js starting on line 188.
  */
 
-// Add map div and class to the DOM.
+// Add map div and classes to the DOM.
 $("#mapDiv").append(googleMap);
 $("#mapDiv").addClass("row");
+$("#mapDiv").addClass("map-container");
+$("#map").addClass("map-canvas");
